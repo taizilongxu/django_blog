@@ -1,0 +1,36 @@
+{% extends "base_title.html" %}
+
+{% block title %}
+Blog
+{% endblock %}
+
+{% block nav%}
+<li><a href="{{Path}}">Home</a></li>
+<li  class="active"><a href="{{Path}}blog">Blog</a></li>
+<li><a href="{{Path}}about">About</a></li>
+<li ><a href="{{Path}}time">Time</a></li>
+{% endblock%} 
+
+{% block number %}
+<ul class="pagination">
+  <li><a href="#">&laquo;</a></li>
+  <li><a href="#">1</a></li>
+  <li><a href="#">&raquo;</a></li>
+</ul>
+{% endblock%}
+
+{% block content %}
+<div class="list-group">
+	{% for i,j in addr%}
+  <a href="{{j}}/" class="list-group-item ">
+    <h3 class="list-group-item-heading">{{i}}</h3>
+    
+<!--     {% for s in i%}<p class="list-group-item-text">{{s}}</p>
+    {% endfor %} -->
+
+
+  </a>
+  {% endfor%}
+</div>
+{% endblock %}
+

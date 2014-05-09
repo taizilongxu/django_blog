@@ -1,0 +1,31 @@
+{% extends "base_title.html" %}
+
+{% block title %}
+{{title}}
+{% endblock %}
+
+{% block nav %}
+<li class="active"><a href="{{Path}}">Home</a></li>
+<li><a href="{{Path}}blog">Blog</a></li>
+<li ><a href="{{Path}}about">About</a></li>
+<li ><a href="{{Path}}time">Time</a></li>
+{% endblock %}
+
+ {% block content %}
+       
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+          </p>
+          <div class="jumbotron">
+            <!-- align="center" -->
+            <h2 ><strong>
+              <font style="color:#39B3D7" >L</font><font style="color:#ED9C28">i</font><font style="color:#47A447">m</font><font style="color:#D9534F">b</font><font style="color:#3276B1">o</font>
+             <!--  <button type="button" class="btn btn-default btn-xs">
+              <span class="glyphicon glyphicon-star"></span> Star
+            </button> -->
+            </strong>
+          </h2>
+            <p  align="left" >安,要记得你心里的<font style="color:#39B3D7">梦</font><font style="color:#D9534F">想</font></p> 
+            <p>Stay <font style="color:#ED9C28">H</font>ungry, Stay <font style="color:#D9534F">F</font>oolish.</p>
+          </div>
+ {% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base_title.html" %}
+
+{% block title %}
+Blog
+{% endblock %}
+
+{% block nav%}
+<li><a href="Home">Home</a></li>
+<li  class="active"><a href="blog">Blog</a></li>
+<li><a href="about">About</a></li>
+{% endblock%} 
+
+{% block number %}
+<ul class="pager">
+  <li class="previous"><a href="#">&larr; Older</a></li>
+  <li class="next"><a href="#">Newer &rarr;</a></li>
+</ul>
+{% endblock %}
+
+{% block blogtitle%}
+<div class="panel">
+  <div class="panel-heading"><h2 align="center"><strong>sdf</strong></h2>
+  </div>
+</div>
+{% endblock %}
+  
+{% block content%}
+{% autoescape off %}
+{{output}}
+{% endautoescape %}
+{% endblock %}
+

@@ -1,0 +1,35 @@
+#excamples  article {
+  -webkit-transition: opacity 200ms ease-in-out;
+  -ms-transition: opacity 200ms ease-in-out;
+  -moz-transition: opacity 200ms ease-in-out;
+  -o-transition: opacity 200ms ease-in-out;
+  transition: opacity 200ms ease-in-out;
+  position: relative;
+  margin-top: 20px;
+  clear: both;
+}
+#excamples article:after {
+  content: '';
+  width: 600px;
+  padding-top: 40px;
+  margin: 40px auto;
+  border-bottom: 1px solid #ebebeb;
+  height: 20px;
+  display: block;
+  clear: both;
+}
+#examples article .half {
+width: 50%;
+float: left;
+}
+.half p{
+  height: 30px;
+  line-height: 30px;
+  width: 30px;
+  border-radius: 30px;
+  text-align: right;
+  margin-right: 5px;
+  text-indent:55px;
+  white-space: nowrap;
+  font-weight:600;
+}
