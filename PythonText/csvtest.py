@@ -6,15 +6,15 @@ csvfile = file('../source/data_20131013_20140503.csv','rb')
 reader = csv.reader(csvfile)
 
 dic = {}
-# for index,line in enumerate(reader):
-#     if index < 12:
-#         continue
-#     if line[2] in dic:
-#         dic[line[2]] += float(line[0])
-#     else:
-#         dic[line[2]] = float(line[0])
-# for i in dic:
-#     print '%s : %s' % (i,dic[i])
+for index,line in enumerate(reader):
+    if index < 12:
+        continue
+    if line[2] in dic:
+        dic[line[2]] += float(line[0])
+    else:
+        dic[line[2]] = float(line[0])
+for i in dic:
+    print '%s : %s' % (i,dic[i])
 
 #时间学习
 # for index,line in enumerate(reader):

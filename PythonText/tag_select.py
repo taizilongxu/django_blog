@@ -51,10 +51,11 @@ for filepath in glob.glob(r'../article/*.md'):
 print tags
 Ft = open('../source/tags.txt','wa')
 Ft.write(str(tags))
+Ft.close()
 
 dict1= sorted(times.iteritems(), key=lambda d:d[0])#字典排序
 print dict1
 Fd = open('../source/times.txt','wa')
 Fd.write(str(dict1))
-
+Fd.close()
 ###############################################################################

@@ -1,12 +1,26 @@
-#coding= utf-8
+#coding= u8
 #---------------------------------import---------------------------------------
-import markdown2
 import os
-import codecs
-#------------------------------------------------------------------------------
+import sys
+import misaka as m
+
+from misaka import HtmlRenderer, Markdown
+from pygments import highlight
+from pygments.lexers import get_lexer_by_name
+from pygments.formatters import HtmlFormatter
+#------------------------------------------------------------------------------------
+class ColorRenderer(HtmlRenderer):
+    def block_code(self, text, lang):
+        if not lang:
+            return '<pre><code>%s</code></pre>' % text.strip()
+        lexer = get_lexer_by_name(lang, stripall = True)
+        return highlight(text, lexer, HtmlFormatter())
 F = open('../source/times.txt','r')
 txt = eval(F.read())
 F.close()
+#解决输出乱码问题
+reload(sys)
+sys.setdefaultencoding('utf-8')
 #创建文件目录，方便索引
 def mkdir(path):
     isExists = os.path.exists(path)
@@ -26,13 +40,15 @@ for key in txt:
     f = open(key[1][1],'r')
     input = f.read()
     f.close()
-    html = markdown2.markdown(input)
+
+    flags = m.HTML_HARD_WRAP
+    exts = m.EXT_FENCED_CODE | m.EXT_AUTOLINK | m.EXT_NO_INTRA_EMPHASIS | m.EXT_SUPERSCRIPT | m.EXT_TABLES
+    md = Markdown(ColorRenderer(flags), exts)
+    html = md.render(input).encode('utf-8')
     abso = path + '/' + key[1][0].strip('.md') + '.html'
     f = open(abso,'aw')
     key[1][1] = abso
     print key[1][1]
-    print html
     f.write(html)
     f.close()
-
 ###############################################################################
