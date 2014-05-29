@@ -6,6 +6,7 @@ My time
 {% block nav%}
 <li><a href="{{path}}">Home</a></li>
 <li ><a href="{{path}}blog">Blog</a></li>
+<li><a href="{{path}}tags">Tags</a></li>
 <li><a href="{{path}}about">About</a></li>
 <li  class="active"><a href="{{path}}time">Time</a></li>
 {% endblock%} 
@@ -25,24 +26,6 @@ My time
 	</div>
 </article>
 
-<article class style="text-align:center;">
-	<div class="canvasWrapper" >
-  <canvas id="line" height="450" width="800"></canvas>
-	</div>
-
-</article>
-
-<article class>
-	<div class="canvasWrapper" >
-  <canvas id="canvas" height="450" width="900"></canvas>
-  	</div>
-</article>
-
-<article class>
-	<div class="canvasWrapper">
-  <canvas id="doughnut" height="450" width="300"></canvas>
-	</div>
-</article>
 </div>
 </section>
 
@@ -68,65 +51,6 @@ My time
 
 		}
 		var myPie = new Chart(document.getElementById("canvas1").getContext("2d")).Pie(pieData,options);
-
-		var lineChartData = {
-			labels : [
-			{% for i in s1%}
-				"{{i}}",
-			{% endfor%}
-			],
-			datasets : [
-				{
-					fillColor : "rgba(151,187,205,0.5)",
-					strokeColor : "rgba(151,187,205,1)",
-					pointColor : "rgba(151,187,205,1)",
-					pointStrokeColor : "#fff",
-					data : [
-					{% for i in si1%}
-					{{i}},
-					{% endfor %}
-					]
-				}
-			]		
-		};
-		new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData);
-
-
-			var barChartData = {
-			labels : [
-			{% for i in timemetertag %}
-			"{{i}}",
-			{% endfor %}
-			],
-			datasets : [	
-				{
-					fillColor : "rgba(151,187,205,0.5)",
-					strokeColor : "rgba(151,187,205,1)",
-					data : [
-					{% for i in timemetertime %}
-					{{i}},
-					{% endfor %}
-					]
-				}
-			],		
-		}
-		var options = {
-			animationSteps : 1000,
-			animateScale : true,
-		}
-		var myLine = new Chart(document.getElementById("canvas").getContext("2d")).Bar(barChartData);
-
-		var doughnutData = [
-		{% for i,j in h2%}
-				{
-					value: {{i}},
-					color:"{{j}}"
-				},
-		{% endfor %}
-			];
-		new Chart(document.getElementById("doughnut").getContext("2d")).Doughnut(doughnutData);
-
-
 	
 	</script>
 {% endblock %}

@@ -142,21 +142,43 @@ def mkdir(path):
         return False
 
 #创建文件article目录
+F = open("../source/times.txt","wa")
+
 for key in txt:
     x = key[0][0:10].split('-')
     path = '../article/' + '/'.join(x)
     mkdir(path)
     f = open(key[1][1],'r')
-    input = f.read()
+    input = f.readlines()
     f.close()
+
+    #去掉---行
+    tmp = []
+    flag = False
+    for line in input:
+        if flag:
+            tmp.append(line)
+        if line == "---\n":
+            flag = True
+    input = ''.join(tmp)
+    print input
+
     #makrdown html
-    flags = m.HTML_HARD_WRAP
-    exts = m.EXT_FENCED_CODE | m.EXT_AUTOLINK | m.EXT_NO_INTRA_EMPHASIS | m.EXT_SUPERSCRIPT | m.EXT_TABLES
-    md = Markdown(ColorRenderer(flags), exts)
-    html = md.render(input).encode('utf-8')
-    abso = path + '/' + key[1][0].strip('.md') + '.html'
+    #flags = m.HTML_HARD_WRAP
+    #exts = m.EXT_FENCED_CODE | m.EXT_AUTOLINK | m.EXT_NO_INTRA_EMPHASIS | m.EXT_SUPERSCRIPT | m.EXT_TABLES
+    #md = Markdown(ColorRenderer(flags), exts)
+    #html = md.render(input).encode('utf-8')
+    abso = path + '/' + key[1][0] + '.html'
+    print abso
     f = open(abso,'wa')
-    key[1][1] = abso
-    print key[1][1]
-    f.write(html)
+    key[1][2] = abso
+    print key[1][2]
+
+
+    f.write(input)
     f.close()
+
+#写入times.txt
+F.write(str(txt))
+F.close()
+print txt

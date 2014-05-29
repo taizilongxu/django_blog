@@ -17,17 +17,38 @@ F = open('/home/limbo/code/myblog/source/times.txt','r')
 TIMES = eval(F.read())
 F.close()
 
+#提取前5篇文章在首页展示
+blog_title = []
+blog_time = []
+blog_output = []
+
+for i in range(5):
+	tmp ='/home/limbo/code/myblog/'+ TIMES[i][1][2][3:]
+	F = open(tmp,'r')
+	blog_title.append(TIMES[i][1][0])
+	blog_time.append(TIMES[i][0])
+	blog_output.append(F.read())
+	F.close()
+INDEX_BLOG = zip(blog_title,blog_time,blog_output)
+
+
 #------------------------------------------------------------------------------------
-def indexinfo(request,template_name):
+def tags(request,tags_one):
+	path = PATH
+	tags3 = TAGS
+	return render_to_response('tags.html',locals())
+
+def indexinfo(request):
 	tags3 = TAGS
 	path = PATH
 	txt = TIMES
 	title = 'Limbo\'s blog'	
+       	index_blog = INDEX_BLOG
+	
 
-	l = [i[1][0] for i in txt]
-	info = [i[1][2] for i in txt]
-	h = zip(l,info)
-	return render_to_response(template_name,locals())
+
+
+	return render_to_response('index.html',locals())
 
 def about(request):
 	tags3 = TAGS
@@ -48,21 +69,21 @@ def blog_index(request):
 	for key in txt2:
 		x = key[0][0:10].split('-')
 		path1 = PATH + 'article/' + '/'.join(x) + '/'
-		abso = path1 + key[1][0].strip('.md') + '.html'
+		abso = path1 + key[1][0][:-3] + '.html'
 		address.append(abso)
 
 	addr = zip(l,address)
 
 	return render_to_response('blog_index.html',locals())
 
-def blog_body(request,year,month,day,blog_title):
+def blog_body(request,year,month,day,blogTitle):
 	tags3 = TAGS
 	path = PATH
-	F = open('/home/limbo/code/myblog/article/' + year + '/' + month + '/' + day + '/' +blog_title ,'r' )
+	F = open('/home/limbo/code/myblog/article/' + year + '/' + month + '/' + day + '/' +blogTitle,'r' )
 	output = F.read()
 	F.close()
-	blog_title = blog_title.strip('.html')
-	return render_to_response('blog_body.html',locals())
+	
+	return render_to_response('blog_body1.html',locals())
 
 def time(request):
 	tags3 = TAGS
@@ -79,19 +100,6 @@ def time(request):
 	pieData = zip(sorted(pieValue,reverse = True),color)
 	pieTitle = zip(timemetertag,timemetertime,color)
 
-	F2 = open('/home/limbo/code/myblog/source/timemeter2.txt','r')
-	txt2 = eval(F2.read())
-	F2.close()
-	l2 = [txt2[i] for i in txt2]
-	h2 = zip(l2,color)
-
-	F3 = open('/home/limbo/code/myblog/source/timemetermouth.txt','r')
-	txt3 = eval(F3.read())
-	F3.close()
-	sort3=sorted(txt3.items(),key=lambda e:e[0],reverse=False)
-	s1 = [i[0] for i in sort3]
-	si1 = [i[1] for i in sort3]
-	h3 = zip(s1,si1)
 
 	return render_to_response('time.html',locals())
 	

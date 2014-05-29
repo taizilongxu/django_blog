@@ -1,7 +1,7 @@
 title: python-cookbook
 date: 2014-04-04 12:36:26
 category: python-cookbook
-tags: [python,python-cookbook]
+tags: python-cookbook
 ---
 #第一章 文本
 
@@ -16,6 +16,7 @@ tags: [python,python-cookbook]
 ##1.2字符和字符值之间的转换
 
 将一个字符转化为相应的ASC或Unicode
+
 ```python
 >>>print ord('a') 97 >>>print chr(91)
 a
@@ -26,7 +27,9 @@ a
 u'\u2020'
 
 ```
+
 ##1.3测试一个对象是否是类字符串
+
 ```python
 isinstance 和 basestring
 basestring是str 和unicode的共同基类
@@ -41,10 +44,12 @@ def isAString(anobj):
  |hej                  |                  hej |         hej          |
 ```
 ##1.5去掉字符串两端的空格
+
 ```python
 >>>x = '    hej    ' >>>print '|',x.lstrip(),'|',x.rstrip(),'|',x.strip(),'|'
  | hej     |     hej | hej |
 ```
+
 ##1.6合并字符串
 
 1.大量字符优先,可以用中间数据list来容纳后来的字符，最后再一并处理
@@ -64,6 +69,7 @@ def isAString(anobj):
 
     revchars = astring[::-1] 
 2.单词
+
 ```python
     revwords = astring.split()
     revwords.reverse()
@@ -71,14 +77,17 @@ def isAString(anobj):
 
     revwords = ' '.join(astring.split()[::-1])
 ```
+
 reversed返回一个迭代器 
 ##1.8检查字符中是否包含某字符集合中的字符
+
 ```python
 def containsAny(seq,aset):
     for c in aset: 
     if c inaset: return True 
     return False
 ```
+
 ##1.9简化字符串的translate方法的使用
 
 ##1.10过滤字符串中不属于指定集合的字符（translate）
@@ -108,6 +117,7 @@ return len(t)/len(c) <= threshold
 
 big = little.upper()
 little = big.lower()
+
 ```python
 >>>print 'one tWo thrEe'.capitalize()
 One two three

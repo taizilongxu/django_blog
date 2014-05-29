@@ -1,7 +1,7 @@
 title: python-cookbook
 date: 2014-04-04 12:36:26
 category: python-cookbook
-tags: [python,python-cookbook]
+tags: python-cookbook
 ---
 #第一章 文本
 
