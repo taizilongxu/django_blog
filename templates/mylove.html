@@ -1,0 +1,60 @@
+{% extends "base_title.html" %}
+
+{% block title %}
+My time
+{% endblock %}
+
+{% block nav%}
+<li><a href="{{path}}">Home</a></li>
+<li ><a href="{{path}}blog">Blog</a></li>
+<li><a href="{{path}}tags">Tags</a></li>
+<li><a href="{{path}}about">About</a></li>
+<li class="dropdown"   class="active">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Lib <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+        <li ><a href="{{path}}time">Time</a></li>
+        <li><a href="{{path}}mylove">Mylove</a></li>
+        </ul>
+</li>
+{% endblock%} 
+
+ {% block content %}
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="3000">
+        <ol class="carousel-indicators">
+          <li data-target="#carousel-example-generic" data-slide-to="0" class=""></li>
+          <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
+          <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
+        </ol>
+        <div class="carousel-inner">
+         	<div class="item active">
+     		 <img src="http://127.0.0.1:8000/static/img/mylove/sublime.png" alt="...">
+     		 	  <div class="carousel-caption">
+    		<h3>Sublime Text 3</h3>
+    		<p>molokai</p>
+ 	 </div>
+     	</div>
+     
+     	<div class="item">
+     		 <img src="http://127.0.0.1:8000/static/img/mylove/molokai.png" alt="...">
+     		   <div class="carousel-caption">
+   			 <h3>Vim</h3>
+   			 <p>molokai</p>
+  		</div>
+     	</div>
+     	<div class="item">
+     		 <img src="http://127.0.0.1:8000/static/img/mylove/ubuntu.jpg" alt="...">
+     		 <div class="carousel-caption">
+   			 <h3>Ubuntu</h3>
+   			 <p>OS being used</p>
+  		</div>
+     	</div>
+
+        </div>
+        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+      </div>
+{% endblock %}

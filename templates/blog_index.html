@@ -9,7 +9,13 @@ Blog
 <li   class="active"><a href="{{path}}blog">Blog</a></li>
 <li><a href="{{path}}tags">Tags</a></li>
 <li><a href="{{path}}about">About</a></li>
-<li ><a href="{{path}}time">Time</a></li>
+<li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Lib <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+        <li ><a href="{{path}}time">Time</a></li>
+        <li><a href="{{path}}mylove">Mylove</a></li>
+        </ul>
+</li>
 {% endblock%} 
 
 {% block number %}
@@ -22,9 +28,10 @@ Blog
 
 {% block content %}
 <div class="list-group">
-	{% for i,j in addr%}
-  <a href="{{j}}/" class="list-group-item ">
-    <h3 class="list-group-item-heading">{{i}}</h3>
+	{% for i,j,k in index_blog  reversed %}
+  <a href="{{i}}/" class="list-group-item ">
+    <h3 class="list-group-item-heading">{{j}}</h3>
+    <p align="right"><span class="glyphicon glyphicon-time"></span>{{k}}</p>
     
 <!--     {% for s in i%}<p class="list-group-item-text">{{s}}</p>
     {% endfor %} -->
@@ -34,4 +41,20 @@ Blog
   {% endfor%}
 </div>
 {% endblock %}
+{% block bar %}
+          <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation" role="navigation">
 
+
+
+
+            <div class="list-group">
+            {% for i,j,k in tags3 %}
+            <a href="#" class="list-group-item"><span class="badge">{{j}}</span><span class="label label-{{k}}">{{i}}</span></a>
+            {% endfor %}
+            </div>
+
+
+
+
+        </div><!-- /list-group -->
+{% endblock %}

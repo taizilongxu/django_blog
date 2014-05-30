@@ -20,6 +20,7 @@ urlpatterns = patterns('myblog.views',
     (r'^article/(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{2})/(?P<blogTitle>.*)/$','blog_body'),
     ('^time/$','time'),
     (r'^tags/(?P<tags_one>.*)$','tags'),
+    (r'^mylove/$','mylove'),
     # (r'^articles/(?P<year>\d{4})/(?P<month>\d{2})/$','blog'),
 
 )

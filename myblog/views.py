@@ -17,20 +17,22 @@ F = open('/home/limbo/code/myblog/source/times.txt','r')
 TIMES = eval(F.read())
 F.close()
 
-#提取前5篇文章在首页展示
+#提取文章在首页展示
 blog_title = []
 blog_time = []
 blog_output = []
+blog_path = []
 
-for i in range(5):
+for i in range(len(TIMES)):
 	tmp ='/home/limbo/code/myblog/'+ TIMES[i][1][2][3:]
 	F = open(tmp,'r')
 	blog_title.append(TIMES[i][1][0])
 	blog_time.append(TIMES[i][0])
 	blog_output.append(F.read())
+	blog_path.append(TIMES[i][1][2])
 	F.close()
 INDEX_BLOG = zip(blog_title,blog_time,blog_output)
-
+INDEX_BLOG_BODY = zip(blog_path,blog_title,blog_time)
 
 #------------------------------------------------------------------------------------
 def tags(request,tags_one):
@@ -44,10 +46,6 @@ def indexinfo(request):
 	txt = TIMES
 	title = 'Limbo\'s blog'	
        	index_blog = INDEX_BLOG
-	
-
-
-
 	return render_to_response('index.html',locals())
 
 def about(request):
@@ -56,24 +54,10 @@ def about(request):
 
 	return render_to_response('about.html',locals())
 
-def blog_index(request):	
-	txt = TIMES
-	tags3 = TAGS
+def blog_index(request):
+	tags3 = TAGS	
+	index_blog = INDEX_BLOG_BODY
 	path = PATH
-	txt2 = TIMES
-	l = [i[1][0] for i in txt]
-	info = [i[1][2] for i in txt]
-	h = zip(l,info)
-
-	address = []
-	for key in txt2:
-		x = key[0][0:10].split('-')
-		path1 = PATH + 'article/' + '/'.join(x) + '/'
-		abso = path1 + key[1][0][:-3] + '.html'
-		address.append(abso)
-
-	addr = zip(l,address)
-
 	return render_to_response('blog_index.html',locals())
 
 def blog_body(request,year,month,day,blogTitle):
@@ -82,7 +66,7 @@ def blog_body(request,year,month,day,blogTitle):
 	F = open('/home/limbo/code/myblog/article/' + year + '/' + month + '/' + day + '/' +blogTitle,'r' )
 	output = F.read()
 	F.close()
-	
+	blog_body_title = blogTitle[:-5]
 	return render_to_response('blog_body1.html',locals())
 
 def time(request):
@@ -106,3 +90,7 @@ def time(request):
 
 def blog(request,year,month,day):
 	return render_to_response('blog.html')
+
+def mylove(request):
+	path = PATH
+	return render_to_response("mylove.html",locals())
